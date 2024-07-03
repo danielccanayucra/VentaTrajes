@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('descripcion');
-            $table->enum('stock',['Disponible','Agotado']);
-            $table->string('precio');
+            $table->integer('stock');
+            $table->decimal('precio', 10, 2);
             $table->enum('talla',['XS','S','M','L','XL','XXL']);
-            $table->string('imagen');
+            $table->string('imagen')->nullable();
 
             $table->unsignedBigInteger('categorie_id');
             $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('cascade');

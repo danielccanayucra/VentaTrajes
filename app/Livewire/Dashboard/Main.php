@@ -8,6 +8,7 @@ use Livewire\Component;
 
 class Main extends Component
 {
+
     public function render()
     {
         $categorias=Category::all();

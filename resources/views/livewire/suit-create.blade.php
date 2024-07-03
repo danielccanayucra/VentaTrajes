@@ -32,8 +32,8 @@
     <div class="my-2 md:mr-2 md:mb-0 w-full">
         <x-input wire:model="form.talla" label="talla"/>
     </div>
-    <div class="my-2 md:mr-2 md:mb-0 w-full">
-        <x-input wire:model="form.imagen" label="imagen"/>
+    <div wire:submit.prevent="upload" class="my-2 md:mr-2 md:mb-0 w-full">
+        <x-input type="file" wire:model="form.imagen" label="imagen"/>
     </div>
 
 

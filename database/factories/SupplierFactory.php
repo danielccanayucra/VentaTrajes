@@ -18,7 +18,7 @@ class SupplierFactory extends Factory
     {
         return [
             'nombre'=>$this->faker->name(),
-            'codigo'=>$this->faker->numerify('########'),
+            'ruc'=>$this->faker->numerify('########'),
             'telefono'=>$this->faker->e164PhoneNumber(),
             'rubro'=>$this->faker->name(),
         ];

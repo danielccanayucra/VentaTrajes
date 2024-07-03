@@ -11,56 +11,78 @@ class SuitController extends Controller
 {
     use ApiResponser;
 
-    public function index(){
-        $suits=Suit::all();
+    public function index()
+    {
+        $suits = Suit::all();
         return $this->successResponse($suits);
     }
 
-    public function store(Request $request){
-        $rules=[
-            'nombre'=>'required|max:255',
-            'descripcion'=>'required|max:255',
-            'stock'=>'required|max:255',
-            'precio'=>'required|max:255',
-            'talla'=>'required|max:255',
-            'imagen'=>'required|max:255'
-
+    public function store(Request $request)
+    {
+        $rules = [
+            'nombre' => 'required|max:255',
+            'descripcion' => 'required|max:255',
+            'stock' => 'required|max:255',
+            'precio' => 'required|numeric',
+            'talla' => 'required|max:255',
+            'imagen' => 'nullable|image|max:1024'
         ];
-        $this->validate($request,$rules);
-        $suits=Suit::create($request->all());
-        return $this->successResponse($suits,Response::HTTP_CREATED);
-    }
 
-    public function update(Request $request,$suits){
-        $rules=[
-            'nombre'=>'required|max:255',
-            'descripcion'=>'required|max:255',
-            'stock'=>'required|max:255',
-            'precio'=>'required|max:255',
-            'talla'=>'required|max:255',
-            'imagen'=>'required|max:255'
-        ];
-        $this->validate($request,$rules);
-        $suits=Suit::findOrFail($suits);
-        $suits->fill($request->all());
-        if($suits->isClean()){
-            return $this->errorResponse('Al menos un campo debe cambiar',Response::HTTP_UNPROCESSABLE_ENTITY);
+        $this->validate($request, $rules);
+
+        // Procesar la imagen si se adjunta en la solicitud
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $imagenPath = $imagen->store('public/posts'); // Almacena la imagen en storage/app/public/posts
+            $request->merge(['imagen' => $imagenPath]); // Agrega la ruta de la imagen al request
         }
-        $suits->save();
-        return $this->successResponse($suits, Response::HTTP_CREATED);
+
+        $suit = Suit::create($request->all());
+        return $this->successResponse($suit, Response::HTTP_CREATED);
     }
 
-    public function show($suits){
-        $suits=Suit::findOrFail($suits);
-        return $this->successResponse($suits);
+    public function update(Request $request, $id)
+    {
+        $rules = [
+            'nombre' => 'required|max:255',
+            'descripcion' => 'required|max:255',
+            'stock' => 'required|max:255',
+            'precio' => 'required|numeric',
+            'talla' => 'required|max:255',
+            'imagen' => 'nullable|image|max:1024'
+        ];
+
+        $this->validate($request, $rules);
+
+        $suit = Suit::findOrFail($id);
+
+        // Procesar la imagen si se adjunta en la solicitud
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $imagenPath = $imagen->store('public/posts'); // Almacena la imagen en storage/app/public/posts
+            $suit->imagen = $imagenPath; // Agrega la ruta de la imagen al request
+        }
+
+        $suit->fill($request->all());
+
+        if ($suit->isClean()) {
+            return $this->errorResponse('Al menos un campo debe cambiar', Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $suit->save();
+        return $this->successResponse($suit);
     }
 
-    public function destroy($suits){
-        $suits=Suit::findOrFail($suits);
-        $suits->delete();
-        return $this->successResponse($suits);
+    public function show($id)
+    {
+        $suit = Suit::findOrFail($id);
+        return $this->successResponse($suit);
     }
 
+    public function destroy($id)
+    {
+        $suit = Suit::findOrFail($id);
+        $suit->delete();
+        return $this->successResponse($suit);
+    }
 }
-
-
