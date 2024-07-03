@@ -9,5 +9,5 @@ use Livewire\Form;
 class ClientForm extends Form
 {
     #[Rule('required')]
-    public $nombre,$apellido,$edad,$direccion,$telefono,$email,$ciudad,$cars_id;
+    public $nombre,$apellido_paterno,$apellido_materno,$dni,$email,$telefono,$direccion,$edad;
 }

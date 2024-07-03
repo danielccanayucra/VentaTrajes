@@ -10,9 +10,9 @@
             <x-input icon="search" placeholder="Buscar registro" wire:model.live="search" />
             <x-button wire:click="create()" spinner="create" icon="plus" primary label="Nuevo"/>
 
-                {{-- @if($isOpen)
-                    @include('livewire.manager-create')
-                @endif --}}
+                @if($isOpen)
+                    @include('livewire.client-create')
+                @endif
         </div>
 
 

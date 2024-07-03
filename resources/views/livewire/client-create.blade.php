@@ -13,7 +13,7 @@
     </div> --}}
     <div class="my-2 md:mr-2 md:mb-0 w-full">
         <div class="col-span-3">
-            <x-input wire:model="form.apellido" label="Apellido "/>
+            <x-input wire:model="form.apellido_paterno" label="apellido_paterno "/>
         </div>
     </div>
     {{-- <div class="my-2 md:mr-2 md:mb-0 w-full">
@@ -22,18 +22,29 @@
         </div>
     </div> --}}
     <div class="my-2 md:mr-2 md:mb-0 w-full">
-        <x-input  wire:model="form.direccion" label="Direccion"/>
+        <x-input  wire:model="form.apellido_materno" label="apellido_materno"/>
     </div>
 
     <div class="my-2 md:mr-2 md:mb-0 w-full">
-        <x-input wire:model="form.telefono" label="TELEFONO"/>
+        <x-input wire:model="form.dni" label="dni"/>
     </div>
+
     <div class="my-2 md:mr-2 md:mb-0 w-full">
         <x-input wire:model="form.email" label="EMAIL"/>
     </div>
+    <div class="my-2 md:mr-2 md:mb-0 w-full">
+        <x-input wire:model="form.telefono" label="telefono"/>
+    </div>
+    <div class="my-2 md:mr-2 md:mb-0 w-full">
+        <x-input wire:model="form.direccion" label="direccion"/>
+    </div>
+    <div class="my-2 md:mr-2 md:mb-0 w-full">
+        <x-input wire:model="form.edad" label="edad"/>
+    </div>
 
 
-    <div class="grid sm:grid-cols-8 gap-2">
+
+    {{-- <div class="grid sm:grid-cols-8 gap-2">
         <x-native-select label="Selecciona marca del auto" wire:model="form.car_id">
             <option>Seleccione opción</option>
             @foreach ($cars as $auto)
@@ -41,6 +52,9 @@
             @endforeach
         </x-native-select>
     </div>
+ --}}
+
+
     <x-slot name="footer">
         <div class="flex justify-end gap-x-2">
             <x-button flat label="Cancelar" x-on:click="close()" />
