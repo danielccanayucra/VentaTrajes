@@ -1,9 +1,10 @@
 <?php
 
-
+use App\Livewire\CategoryMain;
 use App\Livewire\ClientMain;
 use App\Livewire\Dashboard\Main;
 use App\Livewire\IndexLivewire;
+use App\Livewire\SuitMain;
 use App\Livewire\SupplierMain;
 use App\Livewire\Traje;
 use App\Models\Client;
@@ -24,6 +25,8 @@ Route::middleware([
     Route::get('/dashboard',Main::class)->name('dashboard');
     Route::get('clientes',ClientMain::class)->name('clientes');
     Route::get('proovedores',SupplierMain::class)->name('proovedores');
+    Route::get('categories',CategoryMain::class)->name('categories');
+    Route::get('trajes',SuitMain::class)->name('trajes');
 
 });
 
