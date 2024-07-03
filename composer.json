@@ -12,6 +12,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
+        "tymon/jwt-auth": "^2.1",
         "wireui/wireui": "^1.19"
     },
     "require-dev": {
