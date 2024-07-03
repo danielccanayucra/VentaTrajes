@@ -3,6 +3,7 @@ namespace App\Livewire;
 use App\Livewire\Forms\ClientForm;
 use App\Models\Automobile;
 use App\Models\Client;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 use Livewire\WithPagination;
 use WireUi\Traits\Actions;
@@ -63,5 +64,12 @@ class ClientMain extends Component{
 
     public function updatingSearch(){
         $this->resetPage();
+    }
+
+    public function reportePDF(){
+        $clients =Client::all();
+        $pdf = Pdf::loadView('reports.clientpdf', compact('clients'));
+        //return $pdf->download('Reporte de cliente.pdf');
+        return $pdf->stream();
     }
 }

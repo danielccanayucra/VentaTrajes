@@ -8,7 +8,10 @@
 
         <div class="flex items-center justify-between dark:text-gray-400 gap-4 mb-2">
             <x-input icon="search" placeholder="Buscar registro" wire:model.live="search" />
-            <x-button wire:click="create()" spinner="create" icon="plus" primary label="Nuevo"/>
+            <div>
+                <x-button href="{{ route('clientpdf')}}" icon="document" icon="document" target="_blank" label="PDF" teal />
+                <x-button wire:click="create()" spinner="create" icon="plus" primary label="Nuevo"/>
+            </div>
 
                 @if($isOpen)
                     @include('livewire.client-create')

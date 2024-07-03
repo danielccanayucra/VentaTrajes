@@ -1,14 +1,17 @@
 <div class="py-5">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Proovedores
+            Proveedores
         </h2>
     </x-slot>
     <div class=" mx-auto sm:px-6 lg:px-8">
 
         <div class="flex items-center justify-between dark:text-gray-400 gap-4 mb-2">
             <x-input icon="search" placeholder="Buscar registro" wire:model.live="search" />
-            <x-button wire:click="create()" spinner="create" icon="plus" primary label="Nuevo"/>
+            <div>
+                <x-button href="{{ route('supplierpdf')}}" icon="document" icon="document" target="_blank" label="PDF" teal />
+                <x-button wire:click="create()" spinner="create" icon="plus" primary label="Nuevo"/>
+            </div>
 
                 @if($isOpen)
                     @include('livewire.supplier-create')

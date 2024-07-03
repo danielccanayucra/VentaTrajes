@@ -27,6 +27,8 @@ Route::middleware([
     Route::get('proovedores',SupplierMain::class)->name('proovedores');
     Route::get('categories',CategoryMain::class)->name('categories');
     Route::get('trajes',SuitMain::class)->name('trajes');
+    Route::get('/supplierpdf' ,[SupplierMain::class,'reportePDF'])->name('supplierpdf');
+    Route::get('/clientpdf' ,[ClientMain::class,'reportePDF'])->name('clientpdf');
 
 });
 

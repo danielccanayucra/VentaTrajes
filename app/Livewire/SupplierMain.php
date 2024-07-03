@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\SupplierForm;
 use App\Models\Supplier;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 use Livewire\WithPagination;
 use WireUi\Traits\Actions;
@@ -64,6 +65,13 @@ class SupplierMain extends Component{
 
     public function updatingSearch(){
         $this->resetPage();
+    }
+
+    public function reportePDF(){
+        $suppliers =Supplier::all();
+        $pdf = Pdf::loadView('reports.supplierpdf', compact('suppliers'));
+        //return $pdf->download('Reporte de proveedor.pdf');
+        return $pdf->stream();
     }
 }
 
